@@ -1,10 +1,10 @@
 
-## csum
+# csum
 
 This is a LaTeX document class for writing course summaries.
 I've written it to ease writing summaries in the future, and as an exercise in writing LaTeX code and working with GitHub.
 
-# Short Description
+## Short Description
 
 The class works like a template and changes a couple of things, namely:
 - the result of the \*maketitle command
@@ -14,7 +14,7 @@ The class works like a template and changes a couple of things, namely:
 
 The file `example.pdf` contains an example of the class, compiled from the `example.tex` file.
 
-# Implementation
+## Implementation
 
 The class works by calling several custom packages, one for each feature.
 The included packages are:
@@ -28,7 +28,7 @@ Note that `csumhdr.sty` and `csumttl.sty` require the `csuminf.sty` package, whi
 
 ***
 
-# TO DO
+## TO DO
 
 - add documentation for user commands
 - improve readme in general
