@@ -1,0 +1,121 @@
+% document class settings
+\documentclass[12pt,a4paper]{csum}
+
+% encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% bibliography
+\usepackage[style=apa,natbib]{biblatex}
+\addbibresource{references.bib}
+
+% other packages
+\usepackage{lipsum}
+
+%%  Document Info   %%
+%   Author of Summary
+\author{Awesome Student}
+%   Author's e-mail  (Optional, can be left blank)
+\email{mail@website.url}
+%   Course name and (optionally) code
+\course[lATeXc7455]{Course Summary Formatting}
+%   Year course was taught (Optional, can be left blank)
+\yeartaught{\the\year}
+%   Course lecturer (Optional, can be left blank)
+\lecturer{dr.\ Cool Guy}
+%   Faculty course was taught at (Optional, can be left blank)
+\faculty{School of \LaTeX}   
+%  A quote to make the titlepage somewhat interesting. Accepts two arguments; the first being the text of the quote and the second the person quoted
+\titlequote{Some quote in an attempt to look interesting}{Some uninteresting person} 
+
+%%  DOCUMENT BODY   %%
+
+\begin{document}
+
+%   Title page
+\maketitle
+
+%   Table of contents
+\printtoc
+
+%   Part 1
+\part{Introduction}
+
+    \section{Introduction}
+    \lipsum[1-3]
+        \subsection{Some subsection}
+        \lipsum[4-5]
+        \subsection{Another subsection}
+        \lipsum[6]
+    \section{Another example}
+    \lipsum[7]
+        \subsection{Example one}
+        \lipsum[8-10]
+            \subsubsection{Details!}
+            \lipsum[11]
+            \subsubsection{More details}
+            \lipsum[12-16]
+        \subsection{Example two}
+        \lipsum[17-18]
+%   Part 2
+\part{A Turning Point}
+\lipsum[19]
+    \section{You know the drill by now}
+    \lipsum[20-23]
+        \subsection{I'm quite proud}
+        \lipsum[24-25]
+            \subsubsection{Feedback is always welcome}
+            \lipsum[26]
+            \subsubsection{Feel free to send me an email}
+            \lipsum[27]
+            \subsubsection{Or some other way of contacting}
+            \lipsum[28-29]
+        \subsection{More text}
+        \lipsum[30-31]
+    \section{It tends to go on}
+        \lipsum[32]
+        \subsection{And on}
+        \lipsum[33]
+        \subsection{And on...}
+        \lipsum[34]
+    \section{You get the idea}
+    \lipsum[35-37]
+%   Part 3
+\part{To Do}
+
+    \section{Styles}
+
+        \subsection{Bibliography style}
+        \lipsum[39]
+        \subsection{add colour options}
+        \lipsum[40]
+        \subsection{tight vs wide typesetting}
+        \lipsum[41]
+        \subsection{multiple titlepages}
+        \lipsum[42]
+    \section{Definitions}
+    \lipsum[43]
+        \subsection{Section names}
+        \lipsum[44]
+            \subsubsection{Sections}
+            \lipsum[45]
+            \subsubsection{Parts}
+            \lipsum[46]
+            \subsubsection{subsections}
+            \lipsum[47]
+            \subsubsection{subsubsections}
+            \lipsum[48]
+        \subsection{Title page fields}
+    \lipsum[49]
+    \section{Other options}
+    \lipsum[50]
+        \subsection{extra pages}
+        \lipsum[51]
+            \subsubsection{abstract?}
+            \lipsum[52]
+            \subsubsection{acknowledgements?}
+            \lipsum[52]
+            \subsubsection{other stuff like this, still have to think about it}
+            \lipsum[53]
+        
+\end{document}

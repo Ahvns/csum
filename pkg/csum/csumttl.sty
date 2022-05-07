@@ -1,0 +1,120 @@
+%%  IDENTIFICATION  %%
+%   Provides title page for course summary document class
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{csumttl}[2022/05/06 version 1.00 Course Summary Title page]
+
+%%  Used Packages   %%
+\RequirePackage{calc}
+\RequirePackage{setspace}
+\RequirePackage{csuminf}
+\RequirePackage{xcolor}
+    
+%%  TITLEPAGE   %%
+\renewcommand{\maketitle}{\@maketitle}%
+\def\@maketitle{%
+    \begin{titlepage}%
+        \begin{flushright}%
+            %% TITLE %%
+            \huge%
+            \textbf{%
+                Summary \@course%
+                }%
+            \vspace{-2.5ex} \\%
+            \rule{\widthof{%
+                \textbf{Summary \@course}%
+                }}{1pt} \\%
+            \large%
+            \vspace{-1ex}%
+            \ifx\@coursecode\@empty%
+                \relax%
+            \else%
+                \textsc{%
+                    \@coursecode%
+                    }%
+                \ifx\@yeartaught\@empty%
+                    \relax%
+                \else%
+                    ~---~%
+                \fi%
+            \fi%
+            \ifx\@yeartaught\@empty%
+                \relax%
+            \else%
+                \@yeartaught%
+            \fi \\%
+            %% QUOTE %%
+            \ifx\@quote\@empty%
+                \relax%
+            \else%
+                \vfill%
+                \begin{center}%
+                    \begin{minipage}{0.8\textwidth}%
+                        \singlespacing%
+                        \rule{\textwidth}{1.5pt}\vspace{0.5\baselineskip} \\%
+                        \sffamily%
+                        \centering%
+                        \textit{%
+                                ``\@quote''%
+                            } \\%
+                        \raggedleft%
+                        \normalsize%
+                        - \@quoteauthor \\%
+                        \rule{\textwidth}{1.5pt}%
+                    \end{minipage}%
+                \end{center}%
+            \fi%
+            %% AUTHOR & COURSE INFO %%
+            \vfill%
+            \begin{minipage}{0.5\textwidth}%
+                \begin{flushright}
+                    \singlespacing%
+                    \small%
+                    \itshape%
+                    %%  CONDITIONAL FOR LECTURER & FACULTY  %%
+                    \ifx\@lecturer\@empty%
+                        \ifx\@faculty\@empty%
+                            \relax%
+                        \else%
+                            Written for the course taught%
+                        \fi%
+                    \else%
+                        Written for the course taught%
+                    \fi%
+                    %% PRINT LECTURER   %%
+                    \ifx\@lecturer\@empty%
+                        \relax%
+                    \else%
+                        \space by \@lecturer%
+                    \fi%
+                    %% PRINT FACULTY
+                    \ifx\@faculty\@empty%
+                        \relax%
+                    \else%
+                        \space at \@faculty%
+                    \fi%
+                    \ifx\@lecturer\@empty%
+                        \ifx\@faculty\@empty%
+                            \relax%
+                        \else%
+                            \vspace{-1ex} \\%
+                        \fi%
+                    \else%
+                        \vspace{-1ex} \\%
+                    \fi%
+                    \noindent\rule{\textwidth}{0.4pt} \\%
+                    \normalsize%
+                    \normalfont%
+                    \@author \\%
+                    \ifx\@email\@empty%
+                        \relax%
+                    \else%
+                        \texttt{%
+                            \@email%
+                            }%
+                    \fi%
+                \end{flushright}%
+            \end{minipage}%
+        \end{flushright}%
+    \end{titlepage}%
+    \pagenumbering{roman}%
+    }%

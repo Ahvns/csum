@@ -1,0 +1,48 @@
+%%  IDENTIFICATION  %%
+%   Provides info commands for course summary document class
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{csuminf}[2022/05/06 version 1.00 Course Summary info commands]
+
+%%  DOCUMENT INFO   %%
+%   user commands for inputting document info
+\renewcommand{\author}[1]{%
+    \def\@author{#1}%
+    }%
+
+\global\let\@email\@empty%
+\newcommand{\email}[1]{%
+    \def\@email{#1}%
+    }%
+
+\global\let\@coursecode\@empty%
+\newcommand{\course}[2][\@empty]{%
+    \def\@course{#2}%
+    \ifx #1\@empty%
+        \relax%
+    \else%
+        \def\@coursecode{\MakeLowercase{#1}}%
+    \fi%
+    }%
+
+\global\let\@yeartaught\@empty%
+\newcommand{\yeartaught}[1]{%
+    \def\@yeartaught{#1}%
+    }%
+
+\global\let\@lecturer\@empty%
+\newcommand{\lecturer}[1]{%
+    \def\@lecturer{#1}%
+    }%
+
+\global\let\@faculty\@empty%
+\newcommand{\faculty}[1]{%
+    \def\@faculty{#1}%
+    }%
+    
+\global\let\@quote\@empty%
+\global\let\@quoteauthor\@empty%
+\newcommand{\titlequote}[2]{%
+    \def\@quote{#1}%
+    \def\@quoteauthor{#2}%
+    }%
+    

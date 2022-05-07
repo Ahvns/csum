@@ -1,0 +1,62 @@
+%%  IDENTIFICATION  %%
+%   Provides custom table of contents for course summary document class
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{csumtoc}[2022/05/06 version 1.00 Course Summary section headers]
+
+%%  USED PACKAGeS   %%
+\RequirePackage{tocloft}
+\RequirePackage{calc}
+
+%%  CODE    %%
+\AtBeginDocument{%
+    \@ifpackageloaded{fancyhdr}%
+        {\newcommand{\posttochead}{\pagestyle{fancy}}}%
+        {\newcommand{\posttochead}{\pagestyle{plain}}}%
+    }%
+
+\newcommand{\printtoc}{%
+    \pagestyle{plain}%
+    \tableofcontents%
+    \noindent\rule{\textwidth}{2pt}%
+    \clearpage%
+    \pagenumbering{arabic}%
+    \posttochead%
+    }%
+    
+\setlength{\cftsecnumwidth}{%
+    \widthof{%
+        \thesection~~~%
+        }%
+    }%
+
+\renewcommand{\contentsname}{%
+    Table of Contents \vspace{-1ex} \\%
+    \noindent\rule{\textwidth}{2pt}%
+    }
+    
+\renewcommand{\cftpartafterpnum}{%
+    \vspace{-2ex}\newline\rule{0.95\textwidth}{1pt}%
+    }
+    
+\setcounter{tocdepth}{2}
+
+\renewcommand{\cftpartpagefont}{%
+    \sffamily%
+    }
+    
+\renewcommand{\cftsecfont}{%
+    \sffamily\bfseries%
+    }
+    
+\renewcommand{\cftsecpagefont}{%
+    \sffamily%
+    }
+    
+\renewcommand{\cftsubsecfont}{%
+    \sffamily%
+    }
+    
+\renewcommand{\cftsubsecpagefont}{%
+    \sffamily%
+    }
+  

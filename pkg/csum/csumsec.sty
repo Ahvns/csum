@@ -1,0 +1,106 @@
+%%  IDENTIFICATION  %%
+%   Provides custom section headers for course summary document class
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{csumsec}[2022/05/06 version 1.00 Course Summary section headers]
+
+%%  USED PACKAGES   %%
+\RequirePackage{titlesec}%
+
+%%  CODE    %%
+\renewcommand\thepart{Part~\Roman{part}:}%
+\renewcommand\partname{}%
+\AtEndDocument{%
+    \noindent%
+    \rule{\textwidth}{2pt}%
+    \vspace{-0.7\baselineskip}%
+    \newline%
+    \noindent%
+    \rule{0.025\textwidth}{0pt}%
+    \rule{0.95\textwidth}{1pt}%
+    }%
+
+%%  FORMAT  %%
+%   Sections    %
+\renewcommand{\thesection}{%
+    Lecture~\arabic{section}%
+    }%
+
+\titleformat%
+    {\section}%
+    [hang]%
+    {\bfseries\Large}%
+    {\thesection}%
+    {0.5ex}%
+    {\hfill}
+    [\vspace{-2ex}\rule{\textwidth}{2pt}]%
+
+\newcommand{\sectionbreak}{%
+    \vspace{-1ex}%
+    \noindent%
+    \rule{\textwidth}{2pt}%
+    \clearpage%
+    }%
+    
+%   Subsections %
+\titleformat%
+    {\subsection}%
+    [hang]%
+    {\sffamily\bfseries\large}%
+    {\thesubsection~~}%
+    {0.25ex}%
+    {}%
+    [\vspace{-2ex}\rule{0.75\textwidth}{1pt}]%
+
+\newcommand{\subsectionbreak}{%
+    \vspace{-1ex}%
+    \noindent\rule{0.25\textwidth}{0pt}%
+    \rule{0.75\textwidth}{1pt}%
+    \clearpage%
+    }%
+
+\renewcommand{\thesubsection}{%
+    \arabic{section}.\arabic{subsection}%
+    }%
+    
+%   Subsubsections  %
+\titleformat%
+    {\subsubsection}%
+    [hang]%
+    {\sffamily\bfseries}%
+    {~}%
+    {0.125ex}%
+    {}%
+    [\vspace{-2ex}\rule{0.5\textwidth}{0.5pt}]%
+
+\renewcommand{\thesubsubsection}{}%
+
+%   parts   %
+\titleformat%
+    {\part}%
+    [display]%
+    {\ifnum\value{part}>1%
+        \vspace{-1.7\baselineskip}%
+        \newline%
+        \noindent%
+        \rule{\textwidth}{2pt}%
+        \vspace{-0.7\baselineskip}%
+        \newline%
+        \noindent%
+        \rule{0.025\textwidth}{0pt}%
+        \rule{0.95\textwidth}{1pt}%
+        \clearpage%
+    \else%
+        \vspace*{-7em}%
+    \fi%
+    \singlespacing%
+    \bfseries%
+    \huge%
+    }%
+    {\singlespacing\Large~\thepart}%
+    {0.5ex}%
+    {}%
+    [\ifnum\value{part}=1%
+        \vspace{-1.2ex}%
+    \else%
+        \vspace{-1ex}
+    \fi]%
