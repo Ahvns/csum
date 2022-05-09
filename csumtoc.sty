@@ -10,8 +10,8 @@
 %%  CODE    %%
 \AtBeginDocument{%
     \@ifpackageloaded{fancyhdr}%
-        {\newcommand{\posttochead}{\pagestyle{fancy}}}%
-        {\newcommand{\posttochead}{\pagestyle{plain}}}%
+        {\newcommand{\@posttochead}{\pagestyle{fancy}}}%
+        {\newcommand{\@posttochead}{\pagestyle{plain}}}%
     }%
 
 \newcommand{\printtoc}{%
@@ -20,9 +20,9 @@
     \noindent\rule{\textwidth}{2pt}%
     \clearpage%
     \pagenumbering{arabic}%
-    \posttochead%
+    \@posttochead%
     }%
-    
+
 \setlength{\cftsecnumwidth}{%
     \widthof{%
         \thesection~~~%
@@ -33,30 +33,29 @@
     Table of Contents \vspace{-1ex} \\%
     \noindent\rule{\textwidth}{2pt}%
     }
-    
+
 \renewcommand{\cftpartafterpnum}{%
     \vspace{-2ex}\newline\rule{0.95\textwidth}{1pt}%
     }
-    
+
 \setcounter{tocdepth}{2}
 
 \renewcommand{\cftpartpagefont}{%
     \sffamily%
     }
-    
+
 \renewcommand{\cftsecfont}{%
     \sffamily\bfseries%
     }
-    
+
 \renewcommand{\cftsecpagefont}{%
     \sffamily%
     }
-    
+
 \renewcommand{\cftsubsecfont}{%
     \sffamily%
     }
-    
+
 \renewcommand{\cftsubsecpagefont}{%
     \sffamily%
     }
-  
