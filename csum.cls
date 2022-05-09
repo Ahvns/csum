@@ -23,14 +23,17 @@
 
 %%  MORE DECLARATIONS   %%
 
-% formatting
-\RequirePackage[margin=2.5cm]{geometry}%
-\RequirePackage{setspace}%
-\onehalfspacing%
+%   Custom packages
+\RequirePackage{csuminf}%
+\RequirePackage{csumttl}%
+\RequirePackage{csumsec}%
+\RequirePackage{csumtoc}%
+\RequirePackage{csumhdr}%
 
 % typography & typesetting
 \RequirePackage{charter}%
 \RequirePackage{microtype}%
+\RequirePackage[margin=2.5cm]{geometry}%
 
 % hyperlinks
 \AtEndPreamble{%
@@ -42,10 +45,5 @@
         linktocpage=true,%
         hypertexnames=false}%
     }%
-    
-%   Custom packages
-\RequirePackage{csuminf}%
-\RequirePackage{csumttl}%
-\RequirePackage{csumsec}%
-\RequirePackage{csumtoc}%
-\RequirePackage{csumhdr}%
+
+\onehalfspacing%
