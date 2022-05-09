@@ -6,7 +6,6 @@
 %%  USED PACKAGES   %%
 \RequirePackage{fancyhdr}%
 \RequirePackage{csuminf}%
-\RequirePackage{xcolor}%
 
 %%  CODE    %%
 \pagestyle{fancy}%
@@ -14,7 +13,7 @@
 
 \renewcommand{\headrulewidth}{0pt}%
 
-\newcommand{\csec}{}%
+\newcommand{\@csec}{}%
 
 \setlength{\headheight}{15pt}%
 
@@ -36,29 +35,20 @@
     }%
 
 %%  HEADER  %%
-\newcommand{\csumhdr}{%
-    \rhead{%
-        \sffamily%
-        \footnotesize%
-        \textcolor{gray}{%
-            \leftmark%
-            }%
-        }%
-    
-    \lhead{%
-        \sffamily%
-        \small%
-        \textcolor{gray}{%
-            \rightmark%
-            }%
+\rhead{%
+    \sffamily%
+    \footnotesize%
+    \textcolor{gray}{%
+        \leftmark%
         }%
     }%
 
-\csumhdr%
-
-\newcommand{\emptyhdr}{%
-    \rhead{}%
-    \lhead{}%
+\lhead{%
+    \sffamily%
+    \small%
+    \textcolor{gray}{%
+        \rightmark%
+        }%
     }%
 
 %%  MARKS   %%
@@ -68,11 +58,10 @@
 %\renewcommand{\partmark}[1]{}%
 
 \renewcommand{\sectionmark}[1]{%
-    \csumhdr%
-    \renewcommand{\csec}{#1}%
+    \renewcommand{\@csec}{#1}%
     \markboth{}{#1}
     }%
-    
+
 \renewcommand{\subsectionmark}[1]{%
-    \markboth{#1}{\csec}%
+    \markboth{#1}{\@csec}%
     }%
