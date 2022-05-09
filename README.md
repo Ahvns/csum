@@ -56,7 +56,6 @@ The class uses the following (custom) packages:
 - external
   - `etoolbox`
   - `geometry`
-  - `setspace`
   - `charter`
   - `microtype`
   - `hyperref`
