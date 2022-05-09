@@ -7,17 +7,17 @@ and as an exercise in writing LaTeX code and working with GitHub.
 
 ## Table of contents
 
-- `csum.cls`
-  - Features
-  - Implementation
-  - Dependencies
-- Custom Packages
-  - `csumhdr.sty`
-  - `csuminf.sty`
-  - `csumsec.sty`
-  - `csumtoc.sty`
-  - `csumttl.sty`
-- Planned Features
+- [`csum.cls`](https://github.com/Ahvns/csum/tree/readme#csumcls)
+  - [Features](https://github.com/Ahvns/csum/tree/readme#features)
+  - [Implementation](https://github.com/Ahvns/csum/tree/readme#implementation)
+  - [Dependencies](https://github.com/Ahvns/csum/tree/readme#dependencies)
+- [Custom Packages](https://github.com/Ahvns/csum/tree/readme#custom-packages)
+  - [`csumhdr.sty`](https://github.com/Ahvns/csum/tree/readme#csumhdrsty)
+  - [`csuminf.sty`](https://github.com/Ahvns/csum/tree/readme#csuminfsty)
+  - [`csumsec.sty`](https://github.com/Ahvns/csum/tree/readme#csumsecsty)
+  - [`csumtoc.sty`](https://github.com/Ahvns/csum/tree/readme#csumtocsty)
+  - [`csumttl.sty`](https://github.com/Ahvns/csum/tree/readme#csumttlsty)
+- [Planned Features](https://github.com/Ahvns/csum/tree/readme#planned-features)
 
 ---
 
@@ -70,6 +70,10 @@ The class uses the following (custom) packages:
 ---
 
 ## Custom Packages
+
+The custom packages used by the class are documented below.
+For each package, its features, added commands, dependencies and changed
+commands are listed.
 
 ### `csumhdr.sty`
 
@@ -202,4 +206,5 @@ It changes the `\maketitle` command.
 - add options for section headers (e.g. different section names)
 - add class-wide options (e.g. formatting for reading or taking notes)
 - add user commands to change provided options
+- add GitHub issue templates
 - whatever I think up
