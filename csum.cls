@@ -10,7 +10,6 @@
 % This class extends the article class
 % Read all the documentclass options; pass them to article
 \RequirePackage{etoolbox}%
-\RequirePackage{xstring}%
 
 
 %%  OPTIONS %%

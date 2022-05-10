@@ -36,6 +36,11 @@ Currently, the class adds the following:
 - Custom section headers
 - Custom header and footer
 - A general typesetting preset
+- A command to select the type of summary, `\summarytype{}`
+
+Summary type options available:
+- course
+- article
 
 The file `example.pdf` shows off these features, with `example.tex` containing
 the source code and custom syntax used.
@@ -55,7 +60,6 @@ The class uses the following (custom) packages:
 
 - external
   - `etoolbox`
-  - `xstring`
   - `geometry`
   - `charter`
   - `microtype`
@@ -136,7 +140,10 @@ indicating the level of section that just ended.
 
 #### Implementation
 
-This package uses the `titlesec` package.
+This package uses the following packages:
+- `titlesec`
+- `xstring`
+
 It changes the following commands:
 
 - `\thepart`

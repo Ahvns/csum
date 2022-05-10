@@ -23,26 +23,29 @@
     \@posttochead%
     }%
 
-\setlength{\cftsecnumwidth}{%
+\AtBeginDocument{%
+  \setlength{\cftsecnumwidth}{%
     \widthof{%
-        \thesection~~~%
-        }%
+      \thesection~~~%
     }%
+  }%
+}%
+
 
 \renewcommand{\contentsname}{%
-    Table of Contents \vspace{-1ex} \\%
-    \noindent\rule{\textwidth}{2pt}%
-    }
+  Table of Contents \vspace{-1ex} \\%
+  \noindent\rule{\textwidth}{2pt}%
+}%
 
 \renewcommand{\cftpartafterpnum}{%
-    \vspace{-2ex}\newline\rule{0.95\textwidth}{1pt}%
-    }
+  \vspace{-2ex}\newline\rule{0.95\textwidth}{1pt}%
+}%
 
 \setcounter{tocdepth}{2}
 
 \renewcommand{\cftpartpagefont}{%
-    \sffamily%
-    }
+  \sffamily%
+}%
 
 \renewcommand{\cftsecfont}{%
     \sffamily\bfseries%
