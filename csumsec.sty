@@ -7,23 +7,38 @@
 \RequirePackage{titlesec}%
 
 %%  CODE    %%
-\renewcommand\thepart{Part~\Roman{part}:}%
-\renewcommand\partname{}%
-\AtEndDocument{%
-    \noindent%
-    \rule{\textwidth}{2pt}%
-    \vspace{-0.7\baselineskip}%
-    \newline%
-    \noindent%
-    \rule{0.025\textwidth}{0pt}%
-    \rule{0.95\textwidth}{1pt}%
+% option commands
+\newcommand{\@sectype}{course}%
+\newcommand{\@csecname}{}%
+\newcommand{\@csecprename}{}%
+\newcommand{\sectiontype}[1]{%
+  % Check if input is equal to one of specified options, otherwise revert to default
+  \IfStrEqCase{#1}{%
+    {course}{\renewcommand{\@sectype}{course}}%
+    {article}{\renewcommand{\@sectype}{article}}%
+  }%
+  % Change settings per option
+  \IfStrEqCase{\@sectype}{%
+    % Course option
+    {course}{%
+      \renewcommand{\@csecname}{Lecture~\arabic{section}}%
+      \renewcommand{\@csecprename}{\hfill}%
     }%
+    % Article option
+    {article}{%
+      \renewcommand{\@csecname}{}%
+      \renewcommand{\@csecprename}{}%
+    }%
+  }%
+}%
+
+
+
 
 %%  FORMAT  %%
 %   Sections    %
-\renewcommand{\thesection}{%
-    Lecture~\arabic{section}%
-    }%
+\sectiontype{}% initialise
+\renewcommand{\thesection}{\@csecname}%
 
 \titleformat%
     {\section}%
@@ -31,7 +46,7 @@
     {\bfseries\Large}%
     {\thesection}%
     {0.5ex}%
-    {\hfill}
+    {\@csecprename}
     [\vspace{-2ex}\rule{\textwidth}{2pt}]%
 
 \newcommand{\sectionbreak}{%
@@ -40,7 +55,7 @@
     \rule{\textwidth}{2pt}%
     \clearpage%
     }%
-    
+
 %   Subsections %
 \titleformat%
     {\subsection}%
@@ -61,7 +76,7 @@
 \renewcommand{\thesubsection}{%
     \arabic{section}.\arabic{subsection}%
     }%
-    
+
 %   Subsubsections  %
 \titleformat%
     {\subsubsection}%
@@ -75,6 +90,18 @@
 \renewcommand{\thesubsubsection}{}%
 
 %   parts   %
+\renewcommand\thepart{Part~\Roman{part}:}%
+\renewcommand\partname{}%
+\AtEndDocument{%
+    \noindent%
+    \rule{\textwidth}{2pt}%
+    \vspace{-0.7\baselineskip}%
+    \newline%
+    \noindent%
+    \rule{0.025\textwidth}{0pt}%
+    \rule{0.95\textwidth}{1pt}%
+    }%
+
 \titleformat%
     {\part}%
     [display]%

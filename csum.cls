@@ -10,6 +10,7 @@
 % This class extends the article class
 % Read all the documentclass options; pass them to article
 \RequirePackage{etoolbox}%
+\RequirePackage{xstring}%
 
 
 %%  OPTIONS %%
@@ -17,7 +18,7 @@
     \PassOptionsToClass{\CurrentOption}{article}%
     }%
 
-\ProcessOptions \relax%
+\ProcessOptions\relax%
 \LoadClass{article}%
 
 
@@ -45,5 +46,11 @@
         linktocpage=true,%
         hypertexnames=false}%
     }%
+% Custom commands for options
+\newcommand{\@csumtype}{course}%
 
+\newcommand{\summarytype}[1]{%
+  \def\@csumtype{#1}%
+  \sectiontype{\@csumtype}%
+}%
 \onehalfspacing%

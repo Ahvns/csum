@@ -55,6 +55,7 @@ The class uses the following (custom) packages:
 
 - external
   - `etoolbox`
+  - `xstring`
   - `geometry`
   - `charter`
   - `microtype`
