@@ -46,10 +46,7 @@
         hypertexnames=false}%
     }%
 % Custom commands for options
-\newcommand{\@csumtype}{course}%
-
 \newcommand{\summarytype}[1]{%
-  \def\@csumtype{#1}%
-  \sectiontype{\@csumtype}%
+  \sectiontype{#1}%
 }%
 \onehalfspacing%

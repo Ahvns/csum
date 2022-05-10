@@ -5,6 +5,7 @@
 
 %%  USED PACKAGES   %%
 \RequirePackage{titlesec}%
+\RequirePackage{setspace}%
 \RequirePackage{xstring}%
 
 %%  CODE    %%
@@ -13,6 +14,26 @@
 \newcommand{\@csecname}{}%
 \newcommand{\@csecprename}{}%
 \newcommand{\@csubsecname}{}%
+\newcommand{\@cpartname}{}%
+\newcommand{\@cpartformat}{}%
+
+\newcommand{\@courseoptions}{%
+  \renewcommand{\@csecname}{Lecture~\arabic{section}}%
+  \renewcommand{\@csecprename}{\hfill}%
+  \renewcommand{\@csubsecname}{\arabic{section}.\arabic{subsection}~~}%
+  \renewcommand{\@cpartname}{Part~\Roman{part}:}%
+  \renewcommand{\@cpartformat}{display}%
+}%
+
+\newcommand{\@articleoptions}{%
+  \renewcommand{\@csecname}{}%
+  \renewcommand{\@csecprename}{}%
+  \renewcommand{\@csubsecname}{}%
+  \renewcommand{\@cpartname}{Subject:~}%
+  \renewcommand{\@cpartformat}{hang}%
+}%
+
+
 \newcommand{\sectiontype}[1]{%
   % Check if input is equal to one of specified options, otherwise revert to default
   \IfStrEqCase{#1}{%
@@ -22,17 +43,9 @@
   % Change settings per option
   \IfStrEqCase{\@sectype}{%
     % Course option
-    {course}{%
-      \renewcommand{\@csecname}{Lecture~\arabic{section}}%
-      \renewcommand{\@csecprename}{\hfill}%
-      \renewcommand{\@csubsecname}{\arabic{section}.\arabic{subsection}~~}%
-    }%
+    {course}{\@courseoptions}%
     % Article option
-    {article}{%
-      \renewcommand{\@csecname}{}%
-      \renewcommand{\@csecprename}{}%
-      \renewcommand{\@csubsecname}{}%
-    }%
+    {article}{\@articleoptions}%
   }%
 }%
 
@@ -42,6 +55,7 @@
 
 %%  FORMAT  %%
 %   Sections    %
+%{
 \renewcommand{\thesection}{\@csecname}%
 
 \titleformat%
@@ -59,7 +73,7 @@
   \rule{\textwidth}{2pt}%
   \clearpage%
 }%
-
+%}
 %   Subsections %
 \titleformat%
   {\subsection}%
@@ -91,9 +105,10 @@
 
 \renewcommand{\thesubsubsection}{}%
 
-%   parts   %
-\renewcommand\thepart{Part~\Roman{part}:}%
-\renewcommand\partname{}%
+%   Parts   %
+\renewcommand{\thepart}{\@cpartname}%
+\renewcommand{\partname}{}%
+
 \AtEndDocument{%
     \noindent%
     \rule{\textwidth}{2pt}%
@@ -104,32 +119,36 @@
     \rule{0.95\textwidth}{1pt}%
     }%
 
-\titleformat%
+\AtBeginDocument{%
+  \titleformat%
     {\part}%
-    [display]%
-    {\ifnum\value{part}>1%
-        \vspace{-1.7\baselineskip}%
-        \newline%
-        \noindent%
-        \rule{\textwidth}{2pt}%
-        \vspace{-0.7\baselineskip}%
-        \newline%
-        \noindent%
-        \rule{0.025\textwidth}{0pt}%
-        \rule{0.95\textwidth}{1pt}%
-        \clearpage%
+    [\@cpartformat]%
+    {%
+    \ifnum\value{part}>1%
+      \vspace{-1.7\baselineskip}%
+      \newline%
+      \noindent%
+      \rule{\textwidth}{2pt}%
+      \vspace{-0.7\baselineskip}%
+      \newline%
+      \noindent%
+      \rule{0.025\textwidth}{0pt}%
+      \rule{0.95\textwidth}{1pt}%
+      \clearpage%
     \else%
-        \vspace*{-7em}%
+      \vspace*{-7em}%
     \fi%
-    \singlespacing%
+    \singlespacing
     \bfseries%
     \huge%
     }%
-    {\singlespacing\Large~\thepart}%
+    {\thepart}%
     {0.5ex}%
     {}%
-    [\ifnum\value{part}=1%
-        \vspace{-1.2ex}%
+    [%
+    \ifnum\value{part}=1%
+      \vspace{-1.2ex}%
     \else%
-        \vspace{-1ex}
+      \vspace{-1ex}
     \fi]%
+}%
