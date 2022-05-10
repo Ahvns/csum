@@ -143,6 +143,7 @@ indicating the level of section that just ended.
 This package uses the following packages:
 - `titlesec`
 - `xstring`
+- `setspace`
 
 It changes the following commands:
 

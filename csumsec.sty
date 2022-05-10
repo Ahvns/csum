@@ -16,21 +16,24 @@
 \newcommand{\@csubsecname}{}%
 \newcommand{\@cpartname}{}%
 \newcommand{\@cpartformat}{}%
+\newcommand{\@cparttypeset}{}%
 
 \newcommand{\@courseoptions}{%
   \renewcommand{\@csecname}{Lecture~\arabic{section}}%
   \renewcommand{\@csecprename}{\hfill}%
   \renewcommand{\@csubsecname}{\arabic{section}.\arabic{subsection}~~}%
-  \renewcommand{\@cpartname}{Part~\Roman{part}:}%
+  \renewcommand{\@cpartname}{\Large Part~\Roman{part}:}%
   \renewcommand{\@cpartformat}{display}%
+  \renewcommand{\@cparttypeset}{\vspace{-0.5\baselineskip}\huge}%
 }%
 
 \newcommand{\@articleoptions}{%
   \renewcommand{\@csecname}{}%
   \renewcommand{\@csecprename}{}%
   \renewcommand{\@csubsecname}{}%
-  \renewcommand{\@cpartname}{Subject:~}%
+  \renewcommand{\@cpartname}{\LARGE Subject:}%
   \renewcommand{\@cpartformat}{hang}%
+  \renewcommand{\@cparttypeset}{\LARGE}%
 }%
 
 
@@ -65,7 +68,7 @@
   {\thesection}%
   {0.5ex}%
   {\@csecprename}
-  [\vspace{-2ex}\rule{\textwidth}{2pt}]%
+  [\vspace{-2ex}\rule{\textwidth}{2pt}\vspace{-0.5\baselineskip}]%
 
 \newcommand{\sectionbreak}{%
   \vspace{-1ex}%
@@ -82,7 +85,7 @@
   {\thesubsection}%
   {0.25ex}%
   {}%
-  [\vspace{-2ex}\rule{0.75\textwidth}{1pt}]%
+  [\vspace{-2ex}\rule{0.75\textwidth}{1pt}\vspace{-0.5\baselineskip}]%
 
 \newcommand{\subsectionbreak}{%
   \vspace{-1ex}%
@@ -101,7 +104,7 @@
     {~}%
     {0.125ex}%
     {}%
-    [\vspace{-2ex}\rule{0.5\textwidth}{0.5pt}]%
+    [\vspace{-2ex}\rule{0.5\textwidth}{0.5pt}\vspace{-0.4\baselineskip}]%
 
 \renewcommand{\thesubsubsection}{}%
 
@@ -136,18 +139,17 @@
       \rule{0.95\textwidth}{1pt}%
       \clearpage%
     \else%
-      \vspace*{-7em}%
+      \vspace*{-5em}%
     \fi%
-    \singlespacing
+    \singlespacing%
     \bfseries%
-    \huge%
     }%
     {\thepart}%
     {0.5ex}%
-    {}%
+    {\@cparttypeset}%
     [%
     \ifnum\value{part}=1%
-      \vspace{-1.2ex}%
+      \vspace{-0.7\baselineskip}%
     \else%
       \vspace{-1ex}
     \fi]%
