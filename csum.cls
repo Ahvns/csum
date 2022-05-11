@@ -12,6 +12,9 @@
 % This work has the LPPL maintenance status `maintained'.
 %
 % The Current Maintainer of this work is A. Hoendervangers
+% The development version of this work can be found at:
+%
+%   https://github.com/Ahvns/csum
 %
 % This work consists of the files csum.cls, csumhdr.sty,
 % csuminf.sty, csumsec.sty, csumtoc.sty, and csumttl.sty.
