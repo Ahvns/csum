@@ -49,5 +49,6 @@
 \newcommand{\summarytype}[1]{%
   \sectiontype{#1}%
   \headertype{#1}%
+  \titletype{#1}%
 }%
 \onehalfspacing%

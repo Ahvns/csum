@@ -6,115 +6,126 @@
 %%  Used Packages   %%
 \RequirePackage{calc}
 \RequirePackage{setspace}
+\RequirePackage{xstring}
 \RequirePackage{csuminf}
 %\RequirePackage{xcolor}
 
+%%  COMMANDS  %%
+\newcommand{\@csumname}{}%
+
+\newcommand{\@cttlcourseoptions}{%
+  \renewcommand{\@csumname}{Summary~}%
+}%
+
+\newcommand{\@cttlarticleoptions}{%
+  \renewcommand{\@csumname}{Article~notes~for~}%
+}%
+
+\newcommand{\titletype}[1]{%
+  % Check if input is equal to one of specified options, otherwise revert to default
+  \IfStrEqCase{#1}{%
+    {course}{\@cttlcourseoptions}%
+    {article}{\@cttlarticleoptions}%
+  }%
+}%
+
+\titletype{course}% initialise
+
 %%  TITLEPAGE   %%
 \renewcommand{\maketitle}{\@maketitle}%
-\def\@maketitle{%
-    \begin{titlepage}%
-        \begin{flushright}%
-            %% TITLE %%
-            \huge%
-            \textbf{%
-                Summary \@course%
-                }%
-            \vspace{-2.5ex} \\%
-            \rule{\widthof{%
-                \textbf{Summary \@course}%
-                }}{1pt} \\%
-            \large%
-            \vspace{-1ex}%
-            \ifx\@coursecode\@empty%
-                \relax%
+\renewcommand{\@maketitle}{%
+  \begin{titlepage}%
+    \begin{flushright}%
+      %% TITLE %%
+      \huge%
+      \textbf{%
+        \@csumname\@course%
+        }%
+      \vspace{-2.5ex} \\%
+      \rule{\widthof{%
+        \textbf{\@csumname\@course}%
+        }}{1pt} \\%
+      \large%
+      \vspace{-1ex}%
+      \ifx\@coursecode\@empty%
+        \relax%
+      \else%
+        \textsc{\@coursecode}%
+        \ifx\@yeartaught\@empty%
+          \relax%
+        \else%
+          ~---~%
+        \fi%
+      \fi%
+      \ifx\@yeartaught\@empty%
+        \relax%
+      \else%
+        \@yeartaught%
+      \fi \\%
+      %% QUOTE %%
+      \ifx\@quote\@empty%
+        \relax%
+      \else%
+        \vfill%
+        \begin{center}%
+          \begin{minipage}{0.8\textwidth}%
+            \singlespacing%
+            \rule{\textwidth}{1.5pt}\vspace{0.5\baselineskip} \\%
+            \sffamily\centering%
+            \textit{``\@quote''} \\%
+            \raggedleft\normalsize%
+            - \@quoteauthor \\%
+            \rule{\textwidth}{1.5pt}%
+          \end{minipage}%
+        \end{center}%
+      \fi%
+      %% AUTHOR & COURSE INFO %%
+      \vfill%
+      \begin{minipage}{0.5\textwidth}%
+        \begin{flushright}
+          \singlespacing\small\itshape%
+          %%  CONDITIONAL FOR LECTURER & FACULTY  %%
+          \ifx\@lecturer\@empty%
+            \ifx\@faculty\@empty%
+              \relax%
             \else%
-                \textsc{%
-                    \@coursecode%
-                    }%
-                \ifx\@yeartaught\@empty%
-                    \relax%
-                \else%
-                    ~---~%
-                \fi%
+              Written for the course taught%
             \fi%
-            \ifx\@yeartaught\@empty%
-                \relax%
+          \else%
+            Written for the course taught%
+          \fi%
+          %% PRINT LECTURER   %%
+          \ifx\@lecturer\@empty%
+            \relax%
+          \else%
+            \space by \@lecturer%
+          \fi%
+          %% PRINT FACULTY
+          \ifx\@faculty\@empty%
+            \relax%
+          \else%
+            \space at \@faculty%
+          \fi%
+          \ifx\@lecturer\@empty%
+            \ifx\@faculty\@empty%
+              \relax%
             \else%
-                \@yeartaught%
-            \fi \\%
-            %% QUOTE %%
-            \ifx\@quote\@empty%
-                \relax%
-            \else%
-                \vfill%
-                \begin{center}%
-                    \begin{minipage}{0.8\textwidth}%
-                        \singlespacing%
-                        \rule{\textwidth}{1.5pt}\vspace{0.5\baselineskip} \\%
-                        \sffamily%
-                        \centering%
-                        \textit{%
-                                ``\@quote''%
-                            } \\%
-                        \raggedleft%
-                        \normalsize%
-                        - \@quoteauthor \\%
-                        \rule{\textwidth}{1.5pt}%
-                    \end{minipage}%
-                \end{center}%
+              \vspace{-1ex} \\%
             \fi%
-            %% AUTHOR & COURSE INFO %%
-            \vfill%
-            \begin{minipage}{0.5\textwidth}%
-                \begin{flushright}
-                    \singlespacing%
-                    \small%
-                    \itshape%
-                    %%  CONDITIONAL FOR LECTURER & FACULTY  %%
-                    \ifx\@lecturer\@empty%
-                        \ifx\@faculty\@empty%
-                            \relax%
-                        \else%
-                            Written for the course taught%
-                        \fi%
-                    \else%
-                        Written for the course taught%
-                    \fi%
-                    %% PRINT LECTURER   %%
-                    \ifx\@lecturer\@empty%
-                        \relax%
-                    \else%
-                        \space by \@lecturer%
-                    \fi%
-                    %% PRINT FACULTY
-                    \ifx\@faculty\@empty%
-                        \relax%
-                    \else%
-                        \space at \@faculty%
-                    \fi%
-                    \ifx\@lecturer\@empty%
-                        \ifx\@faculty\@empty%
-                            \relax%
-                        \else%
-                            \vspace{-1ex} \\%
-                        \fi%
-                    \else%
-                        \vspace{-1ex} \\%
-                    \fi%
-                    \noindent\rule{\textwidth}{0.4pt} \\%
-                    \normalsize%
-                    \normalfont%
-                    \@author \\%
-                    \ifx\@email\@empty%
-                        \relax%
-                    \else%
-                        \texttt{%
-                            \@email%
-                            }%
-                    \fi%
-                \end{flushright}%
-            \end{minipage}%
+          \else%
+            \vspace{-1ex} \\%
+          \fi%
+          \normalsize\normalfont%
+          \noindent\rule{\textwidth}{0.4pt} \\%
+          \@author \\%
+          \ifx\@email\@empty%
+            \relax%
+          \else%
+            \texttt{\@email}%
+          \fi%
         \end{flushright}%
-    \end{titlepage}%
-    \pagenumbering{roman}%
-    }%
+      \end{minipage}%
+    \end{flushright}%
+  \end{titlepage}%
+  \pagenumbering{roman}%
+}%

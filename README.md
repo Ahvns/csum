@@ -90,8 +90,7 @@ When a new part is started,
 the name of the part replaces the section name in the header for that page.
 The footer displays the name of the course the summary was written for on the
 left and the page number on the right.
-The package provides the user command `\headertype{}` to select the style of
-headers and footers.
+The package provides the user command `\headertype{}` to select the style of headers and footers.
 Currently, the options `course`(default) and `article` are allowed.
 
 #### Implementation
@@ -199,6 +198,8 @@ The titlepage contains the following:
 - A quote (Optional)
 
 The titlepage is printed on a separate page.
+The package provides the `\titletype{}` user command to select the type of contents in the titlepage.
+Currently, the options `course`(default) and `article` are allowed.
 
 #### Implementation
 
@@ -206,6 +207,7 @@ This package uses the following packages:
 
 - `calc`
 - `setspace`
+- `xstring`
 - `csuminf`
 
 It changes the `\maketitle` command.
@@ -214,13 +216,12 @@ It changes the `\maketitle` command.
 
 ## Planned Features
 
-- add/improve documentation for user commands
+- improve documentation for user commands
 - add license
 - provide comments in code
 - clean up titlepage generation
 - add options for titlepage (e.g. colour or different style)
 - add options for section headers (e.g. different section names)
 - add class-wide options (e.g. formatting for reading or taking notes)
-- add user commands to change provided options
 - add GitHub issue templates
 - whatever I think up
