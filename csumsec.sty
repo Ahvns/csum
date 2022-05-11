@@ -18,7 +18,7 @@
 \newcommand{\@cparttypeset}{}%
 
 \newcommand{\@cseccourseoptions}{%
-  \renewcommand{\@csecname}{Lecture~\arabic{section}}%
+  \renewcommand{\@csecname}{Lecture~\arabic{section}\hspace{1em}}%
   \renewcommand{\@csecprename}{\hfill}%
   \renewcommand{\@csubsecname}{\arabic{section}.\arabic{subsection}~~}%
   \renewcommand{\@cpartname}{\Large Part~\Roman{part}:}%
@@ -30,7 +30,7 @@
   \renewcommand{\@csecname}{}%
   \renewcommand{\@csecprename}{}%
   \renewcommand{\@csubsecname}{}%
-  \renewcommand{\@cpartname}{\LARGE Subject:}%
+  \renewcommand{\@cpartname}{Subject:}%
   \renewcommand{\@cpartformat}{hang}%
   \renewcommand{\@cparttypeset}{\LARGE}%
 }%
@@ -99,7 +99,7 @@
 \renewcommand{\thesubsubsection}{}%
 
 %   Parts   %
-\renewcommand{\thepart}{\@cpartname}%
+\renewcommand{\thepart}{\@cpartname\hspace{-0.6em}}%
 \renewcommand{\partname}{}%
 
 \AtEndDocument{%
@@ -134,8 +134,8 @@
     \singlespacing%
     \bfseries%
     }%
-    {\thepart}%
-    {0.5ex}%
+    {\LARGE\thepart}%
+    {1em}%
     {\@cparttypeset}%
     [%
     \ifnum\value{part}=1%

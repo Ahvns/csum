@@ -166,9 +166,6 @@ It changes the following commands:
 
 This package provides a custom table of contents, with a look similar to that of
 the `minitoc` package table of contents.
-It also provides a user command to print the new table of contents, `\printtoc`.
-Using the regular `\tableofcontents` does not print the table of contents as
-intended.
 
 #### Implementation
 
@@ -180,6 +177,7 @@ This package uses the following packages:
 It changes the following commands:
 
 - `\contentsname`
+- `\tableofcontents`
 
 ### `csumttl.sty`
 
