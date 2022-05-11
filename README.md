@@ -90,6 +90,9 @@ When a new part is started,
 the name of the part replaces the section name in the header for that page.
 The footer displays the name of the course the summary was written for on the
 left and the page number on the right.
+The package provides the user command `\headertype{}` to select the style of
+headers and footers.
+Currently, the options `course`(default) and `article` are allowed.
 
 #### Implementation
 
@@ -137,6 +140,9 @@ Sections, subsections and subsubsections are printed with a horizontal rule
 below their name.
 At the end of each part, section and subsection, a horizontal rule is printed
 indicating the level of section that just ended.
+The package provides the `\sectionype{}` user command to select the style of
+section headers.
+Currently, the options `course`(default) and `article` are allowed.
 
 #### Implementation
 
