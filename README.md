@@ -208,6 +208,7 @@ This package uses the following packages:
 - `calc`
 - `setspace`
 - `xstring`
+- `ragged2e`
 - `csuminf`
 
 It changes the `\maketitle` command.

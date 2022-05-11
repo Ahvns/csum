@@ -8,17 +8,61 @@
 \RequirePackage{setspace}
 \RequirePackage{xstring}
 \RequirePackage{csuminf}
+\RequirePackage{ragged2e}
 %\RequirePackage{xcolor}
 
 %%  COMMANDS  %%
 \newcommand{\@csumname}{}%
+\newcommand{\@csumsubject}{}%
 
 \newcommand{\@cttlcourseoptions}{%
   \renewcommand{\@csumname}{Summary~}%
+  \renewcommand{\@csumsubject}{%
+    %%  CONDITIONAL FOR LECTURER & FACULTY  %%
+    \ifx\@lecturer\@empty%
+      \ifx\@faculty\@empty%
+        \relax%
+      \else%
+        Written for the course taught%
+      \fi%
+    \else%
+      Written for the course taught%
+    \fi%
+    %% PRINT LECTURER   %%
+    \ifx\@lecturer\@empty%
+      \relax%
+    \else%
+      \space by \@lecturer%
+    \fi%
+    %% PRINT FACULTY
+    \ifx\@faculty\@empty%
+      \relax%
+    \else%
+      \space at \@faculty%
+    \fi%
+  }%
 }%
 
 \newcommand{\@cttlarticleoptions}{%
   \renewcommand{\@csumname}{Article~notes~for~}%
+  \renewcommand{\@csumsubject}{%
+  %%  CONDITIONAL FOR LECTURER & FACULTY  %%
+  \ifx\@lecturer\@empty%
+    \ifx\@faculty\@empty%
+      \relax%
+    \else%
+      Written for \@course%
+    \fi%
+  \else%
+    Written for \@course~taught by \@lecturer%
+  \fi%
+  %% PRINT FACULTY
+  \ifx\@faculty\@empty%
+    \relax%
+  \else%
+    ~at \@faculty%
+  \fi%
+  }%
 }%
 
 \newcommand{\titletype}[1]{%
@@ -82,30 +126,11 @@
       %% AUTHOR & COURSE INFO %%
       \vfill%
       \begin{minipage}{0.5\textwidth}%
-        \begin{flushright}
+        \begin{FlushRight}
+          \hyphenpenalty=750%
           \singlespacing\small\itshape%
-          %%  CONDITIONAL FOR LECTURER & FACULTY  %%
-          \ifx\@lecturer\@empty%
-            \ifx\@faculty\@empty%
-              \relax%
-            \else%
-              Written for the course taught%
-            \fi%
-          \else%
-            Written for the course taught%
-          \fi%
-          %% PRINT LECTURER   %%
-          \ifx\@lecturer\@empty%
-            \relax%
-          \else%
-            \space by \@lecturer%
-          \fi%
-          %% PRINT FACULTY
-          \ifx\@faculty\@empty%
-            \relax%
-          \else%
-            \space at \@faculty%
-          \fi%
+          \@csumsubject%
+          %%  SPACING %%
           \ifx\@lecturer\@empty%
             \ifx\@faculty\@empty%
               \relax%
@@ -123,9 +148,10 @@
           \else%
             \texttt{\@email}%
           \fi%
-        \end{flushright}%
+        \end{FlushRight}%
       \end{minipage}%
     \end{flushright}%
   \end{titlepage}%
+  \hyphenpenalty=50%
   \pagenumbering{roman}%
 }%
