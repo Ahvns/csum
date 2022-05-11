@@ -99,6 +99,8 @@ Currently, the options `course`(default) and `article` are allowed.
 This package uses the following packages:
 
 - `fancyhdr`
+- `xcolor`
+- `xstring`
 - `csuminf`
 
 It changes the following commands:
