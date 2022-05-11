@@ -151,6 +151,7 @@ This package uses the following packages:
 - `titlesec`
 - `xstring`
 - `setspace`
+- `calc`
 
 It changes the following commands:
 

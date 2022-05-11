@@ -7,6 +7,7 @@
 \RequirePackage{titlesec}%
 \RequirePackage{setspace}%
 \RequirePackage{xstring}%
+\RequirePackage{calc}%
 
 %%  CODE    %%
 % option commands
@@ -75,10 +76,10 @@
   {\thesubsection}%
   {0.25ex}%
   {}%
-  [\vspace{-2ex}\rule{0.75\textwidth}{1pt}\vspace{-0.5\baselineskip}]%
+  [\vspace{-0.7\baselineskip}\rule{0.75\textwidth}{1pt}\vspace{-0.5\baselineskip}]%
 
 \newcommand{\subsectionbreak}{%
-  \vspace{-1ex}%
+  \vspace{-0.5\baselineskip}%
   \noindent\rule{0.25\textwidth}{0pt}%
   \rule{0.75\textwidth}{1pt}%
   \clearpage%
@@ -87,14 +88,23 @@
 \renewcommand{\thesubsection}{\@csubsecname}%
 
 %   Subsubsections  %
+\def\@csubsubsectitle{}%
+\let\@oldsubsubsec\subsubsection%
+\renewcommand{\subsubsection}[1]{%
+  \renewcommand{\@csubsubsectitle}{#1}%
+  \@oldsubsubsec{#1}%
+}%
+
 \titleformat%
     {\subsubsection}%
     [hang]%
     {\sffamily\bfseries}%
-    {~}%
+    {\hspace{0.5em}}%
     {0.125ex}%
     {}%
-    [\vspace{-2ex}\rule{0.5\textwidth}{0.5pt}\vspace{-0.4\baselineskip}]%
+    [\vspace{-0.7\baselineskip}%
+    \rule{\widthof{\bfseries\@csubsubsectitle}+1.5em}{0.5pt}%
+    \vspace{-0.5\baselineskip}]%
 
 \renewcommand{\thesubsubsection}{}%
 

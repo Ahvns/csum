@@ -14,6 +14,8 @@
 \fancyhf{}%
 
 \newcommand{\@cfooter}{}%
+\newcommand{\@crhead}{}%
+\newcommand{\@clhead}{}%
 
 \newcommand{\@chdrcourseoptions}{%
   \renewcommand{\partmark}[1]{\markboth{}{##1}}%
@@ -23,21 +25,28 @@
   }%
   \renewcommand{\subsectionmark}[1]{\markboth{##1}{\@csec}}%
   \renewcommand{\@cfooter}{%
-  Summary~for~%
-  \ifx\@coursecode\@empty%
-      \relax%
-  \else%
-      \textsc{\@coursecode}~---~%
-  \fi%
-  \@course%
+    Summary~for~%
+    \ifx\@coursecode\@empty%
+        \relax%
+    \else%
+        \textsc{\@coursecode}~---~%
+    \fi%
+    \@course%
   }%
+  \renewcommand{\@crhead}{\leftmark}%
+  \renewcommand{\@clhead}{\rightmark}%
 }%
 
 \newcommand{\@chdrarticleoptions}{%
-  \renewcommand{\partmark}[1]{\markboth{##1}{}}%
-  \renewcommand{\sectionmark}[1]{\markright{##1}}%
+  \renewcommand{\partmark}[1]{%
+    \markright{##1}%
+    \def\@chdrpartname{##1}%
+  }%
+  \renewcommand{\sectionmark}[1]{\markboth{##1}{\@chdrpartname}}%
   \renewcommand{\subsectionmark}[1]{}%
   \renewcommand{\@cfooter}{Article~notes~for~\@course}%
+  \renewcommand{\@crhead}{\rightmark}%
+  \renewcommand{\@clhead}{\leftmark}%
 }%
 
 \newcommand{\headertype}[1]{%
@@ -61,24 +70,12 @@
 \rfoot{\thepage}%
 
 \lfoot{%
-    \sffamily%
-    \footnotesize%
-    \textcolor{gray}{\@cfooter}%
-    }%
+  \sffamily%
+  \footnotesize%
+  \textcolor{gray}{\@cfooter}%
+}%
 
 %%  HEADER  %%
-\rhead{%
-    \sffamily%
-    \footnotesize%
-    \textcolor{gray}{%
-        \leftmark%
-        }%
-    }%
+\rhead{\sffamily\footnotesize\textcolor{gray}{\@crhead}}%
 
-\lhead{%
-    \sffamily%
-    \small%
-    \textcolor{gray}{%
-        \rightmark%
-        }%
-    }%
+\lhead{\sffamily\small\textcolor{gray}{\@clhead}}%
