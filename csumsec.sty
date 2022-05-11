@@ -5,10 +5,113 @@
 
 %%  USED PACKAGES   %%
 \RequirePackage{titlesec}%
+\RequirePackage{setspace}%
+\RequirePackage{xstring}%
+\RequirePackage{calc}%
 
 %%  CODE    %%
-\renewcommand\thepart{Part~\Roman{part}:}%
-\renewcommand\partname{}%
+% option commands
+\newcommand{\@csecname}{}%
+\newcommand{\@csecprename}{}%
+\newcommand{\@csubsecname}{}%
+\newcommand{\@cpartname}{}%
+\newcommand{\@cpartformat}{}%
+\newcommand{\@cparttypeset}{}%
+
+\newcommand{\@cseccourseoptions}{%
+  \renewcommand{\@csecname}{Lecture~\arabic{section}\hspace{1em}}%
+  \renewcommand{\@csecprename}{\hfill}%
+  \renewcommand{\@csubsecname}{\arabic{section}.\arabic{subsection}~~}%
+  \renewcommand{\@cpartname}{\Large Part~\Roman{part}:}%
+  \renewcommand{\@cpartformat}{display}%
+  \renewcommand{\@cparttypeset}{\vspace{-0.5\baselineskip}\huge}%
+}%
+
+\newcommand{\@csecarticleoptions}{%
+  \renewcommand{\@csecname}{}%
+  \renewcommand{\@csecprename}{}%
+  \renewcommand{\@csubsecname}{}%
+  \renewcommand{\@cpartname}{Subject:}%
+  \renewcommand{\@cpartformat}{hang}%
+  \renewcommand{\@cparttypeset}{\LARGE}%
+}%
+
+
+\newcommand{\sectiontype}[1]{%
+  % Check if input is equal to one of specified options, otherwise revert to default
+  \IfStrEqCase{#1}{%
+    {course}{\@cseccourseoptions}%
+    {article}{\@csecarticleoptions}%
+  }%
+}%
+
+\sectiontype{course}% initialise
+
+%%  FORMAT  %%
+%   Sections    %
+%{
+\renewcommand{\thesection}{\@csecname}%
+
+\titleformat%
+  {\section}%
+  [hang]%
+  {\bfseries\Large}%
+  {\thesection}%
+  {0.5ex}%
+  {\@csecprename}
+  [\vspace{-2ex}\rule{\textwidth}{2pt}\vspace{-0.5\baselineskip}]%
+
+\newcommand{\sectionbreak}{%
+  \vspace{-1ex}%
+  \noindent%
+  \rule{\textwidth}{2pt}%
+  \clearpage%
+}%
+%}
+%   Subsections %
+\titleformat%
+  {\subsection}%
+  [hang]%
+  {\sffamily\bfseries\large}%
+  {\thesubsection}%
+  {0.25ex}%
+  {}%
+  [\vspace{-0.7\baselineskip}\rule{0.75\textwidth}{1pt}\vspace{-0.5\baselineskip}]%
+
+\newcommand{\subsectionbreak}{%
+  \vspace{-0.5\baselineskip}%
+  \noindent\rule{0.25\textwidth}{0pt}%
+  \rule{0.75\textwidth}{1pt}%
+  \clearpage%
+}%
+
+\renewcommand{\thesubsection}{\@csubsecname}%
+
+%   Subsubsections  %
+\def\@csubsubsectitle{}%
+\let\@oldsubsubsec\subsubsection%
+\renewcommand{\subsubsection}[1]{%
+  \renewcommand{\@csubsubsectitle}{#1}%
+  \@oldsubsubsec{#1}%
+}%
+
+\titleformat%
+    {\subsubsection}%
+    [hang]%
+    {\sffamily\bfseries}%
+    {\hspace{0.5em}}%
+    {0.125ex}%
+    {}%
+    [\vspace{-0.7\baselineskip}%
+    \rule{\widthof{\bfseries\@csubsubsectitle}+1.5em}{0.5pt}%
+    \vspace{-0.5\baselineskip}]%
+
+\renewcommand{\thesubsubsection}{}%
+
+%   Parts   %
+\renewcommand{\thepart}{\@cpartname\hspace{-0.6em}}%
+\renewcommand{\partname}{}%
+
 \AtEndDocument{%
     \noindent%
     \rule{\textwidth}{2pt}%
@@ -19,88 +122,35 @@
     \rule{0.95\textwidth}{1pt}%
     }%
 
-%%  FORMAT  %%
-%   Sections    %
-\renewcommand{\thesection}{%
-    Lecture~\arabic{section}%
-    }%
-
-\titleformat%
-    {\section}%
-    [hang]%
-    {\bfseries\Large}%
-    {\thesection}%
-    {0.5ex}%
-    {\hfill}
-    [\vspace{-2ex}\rule{\textwidth}{2pt}]%
-
-\newcommand{\sectionbreak}{%
-    \vspace{-1ex}%
-    \noindent%
-    \rule{\textwidth}{2pt}%
-    \clearpage%
-    }%
-    
-%   Subsections %
-\titleformat%
-    {\subsection}%
-    [hang]%
-    {\sffamily\bfseries\large}%
-    {\thesubsection~~}%
-    {0.25ex}%
-    {}%
-    [\vspace{-2ex}\rule{0.75\textwidth}{1pt}]%
-
-\newcommand{\subsectionbreak}{%
-    \vspace{-1ex}%
-    \noindent\rule{0.25\textwidth}{0pt}%
-    \rule{0.75\textwidth}{1pt}%
-    \clearpage%
-    }%
-
-\renewcommand{\thesubsection}{%
-    \arabic{section}.\arabic{subsection}%
-    }%
-    
-%   Subsubsections  %
-\titleformat%
-    {\subsubsection}%
-    [hang]%
-    {\sffamily\bfseries}%
-    {~}%
-    {0.125ex}%
-    {}%
-    [\vspace{-2ex}\rule{0.5\textwidth}{0.5pt}]%
-
-\renewcommand{\thesubsubsection}{}%
-
-%   parts   %
-\titleformat%
+\AtBeginDocument{%
+  \titleformat%
     {\part}%
-    [display]%
-    {\ifnum\value{part}>1%
-        \vspace{-1.7\baselineskip}%
-        \newline%
-        \noindent%
-        \rule{\textwidth}{2pt}%
-        \vspace{-0.7\baselineskip}%
-        \newline%
-        \noindent%
-        \rule{0.025\textwidth}{0pt}%
-        \rule{0.95\textwidth}{1pt}%
-        \clearpage%
+    [\@cpartformat]%
+    {%
+    \ifnum\value{part}>1%
+      \vspace{-1.7\baselineskip}%
+      \newline%
+      \noindent%
+      \rule{\textwidth}{2pt}%
+      \vspace{-0.7\baselineskip}%
+      \newline%
+      \noindent%
+      \rule{0.025\textwidth}{0pt}%
+      \rule{0.95\textwidth}{1pt}%
+      \clearpage%
     \else%
-        \vspace*{-7em}%
+      \vspace*{-5em}%
     \fi%
     \singlespacing%
     \bfseries%
-    \huge%
     }%
-    {\singlespacing\Large~\thepart}%
-    {0.5ex}%
-    {}%
-    [\ifnum\value{part}=1%
-        \vspace{-1.2ex}%
+    {\LARGE\thepart}%
+    {1em}%
+    {\@cparttypeset}%
+    [%
+    \ifnum\value{part}=1%
+      \vspace{-0.7\baselineskip}%
     \else%
-        \vspace{-1ex}
+      \vspace{-1ex}
     \fi]%
+}%

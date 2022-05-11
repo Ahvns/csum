@@ -17,7 +17,7 @@
     \PassOptionsToClass{\CurrentOption}{article}%
     }%
 
-\ProcessOptions \relax%
+\ProcessOptions\relax%
 \LoadClass{article}%
 
 
@@ -45,5 +45,10 @@
         linktocpage=true,%
         hypertexnames=false}%
     }%
-
+% Custom commands for options
+\newcommand{\summarytype}[1]{%
+  \sectiontype{#1}%
+  \headertype{#1}%
+  \titletype{#1}%
+}%
 \onehalfspacing%

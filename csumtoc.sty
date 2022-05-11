@@ -3,59 +3,75 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{csumtoc}[2022/05/06 version 1.00 Course Summary section headers]
 
-%%  USED PACKAGeS   %%
+%%  USED PACKAGES   %%
 \RequirePackage{tocloft}
 \RequirePackage{calc}
 
-%%  CODE    %%
+%%  GENERAL %%
 \AtBeginDocument{%
-    \@ifpackageloaded{fancyhdr}%
-        {\newcommand{\@posttochead}{\pagestyle{fancy}}}%
-        {\newcommand{\@posttochead}{\pagestyle{plain}}}%
-    }%
+  \@ifpackageloaded{fancyhdr}%
+    {\newcommand{\@posttochead}{\pagestyle{fancy}}}%
+    {\newcommand{\@posttochead}{\pagestyle{plain}}}%
+}%
 
-\newcommand{\printtoc}{%
+
+% new command to print toc
+\AtBeginDocument{%
+  \let\@printtoc\tableofcontents%
+  \renewcommand{\tableofcontents}{%
     \pagestyle{plain}%
-    \tableofcontents%
+    \@printtoc%
     \noindent\rule{\textwidth}{2pt}%
+    \vspace{-0.7\baselineskip}%
+    \newline%
+    \noindent%
+    \rule{0.025\textwidth}{0pt}%
+    \rule{0.95\textwidth}{1pt}%
     \clearpage%
     \pagenumbering{arabic}%
     \@posttochead%
-    }%
+  }%
+}%
 
-\setlength{\cftsecnumwidth}{%
-    \widthof{%
-        \thesection~~~%
-        }%
-    }%
+% justify part page numbers to right of toc
+\renewcommand{\@tocrmarg}{0em}
 
+% change name of toc and add rule
 \renewcommand{\contentsname}{%
-    Table of Contents \vspace{-1ex} \\%
-    \noindent\rule{\textwidth}{2pt}%
-    }
-
-\renewcommand{\cftpartafterpnum}{%
-    \vspace{-2ex}\newline\rule{0.95\textwidth}{1pt}%
-    }
+  Table of Contents \vspace{-0.4\baselineskip} \\%
+  \noindent\rule{\textwidth}{2pt}\vspace{-0.4\baselineskip}%
+}%
 
 \setcounter{tocdepth}{2}
 
+%%  PARTS %%
+\renewcommand{\cftpartafterpnum}{%
+  \vspace{-0.6\baselineskip}\newline%
+  \rule{\textwidth}{1pt}\vspace{-0.2\baselineskip}%
+}%
+
 \renewcommand{\cftpartpagefont}{%
-    \sffamily%
-    }
+  \sffamily%
+}%
 
-\renewcommand{\cftsecfont}{%
-    \sffamily\bfseries%
-    }
+%%  SECTIONS  %%
+\renewcommand{\cftsecfont}{\sffamily\bfseries}%
 
-\renewcommand{\cftsecpagefont}{%
-    \sffamily%
-    }
+\setlength{\cftsecindent}{2em}%
 
-\renewcommand{\cftsubsecfont}{%
-    \sffamily%
-    }
+\AtBeginDocument{%
+  \setlength{\cftsecnumwidth}{\widthof{\thesection}}%
+}%
 
-\renewcommand{\cftsubsecpagefont}{%
-    \sffamily%
-    }
+\renewcommand{\cftsecpagefont}{\sffamily}%
+
+%%  SUBSECTIONS %%
+\setlength{\cftsubsecindent}{4em}%
+
+\renewcommand{\cftsubsecfont}{\sffamily}%
+
+\renewcommand{\cftsubsecpagefont}{\sffamily}%
+
+\AtBeginDocument{%
+  \setlength{\cftsubsecnumwidth}{\widthof{\thesubsection}}%
+}%

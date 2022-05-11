@@ -36,6 +36,11 @@ Currently, the class adds the following:
 - Custom section headers
 - Custom header and footer
 - A general typesetting preset
+- A command to select the type of summary, `\summarytype{}`
+
+Summary type options available:
+- course
+- article
 
 The file `example.pdf` shows off these features, with `example.tex` containing
 the source code and custom syntax used.
@@ -85,12 +90,16 @@ When a new part is started,
 the name of the part replaces the section name in the header for that page.
 The footer displays the name of the course the summary was written for on the
 left and the page number on the right.
+The package provides the user command `\headertype{}` to select the style of headers and footers.
+Currently, the options `course`(default) and `article` are allowed.
 
 #### Implementation
 
 This package uses the following packages:
 
 - `fancyhdr`
+- `xcolor`
+- `xstring`
 - `csuminf`
 
 It changes the following commands:
@@ -132,10 +141,18 @@ Sections, subsections and subsubsections are printed with a horizontal rule
 below their name.
 At the end of each part, section and subsection, a horizontal rule is printed
 indicating the level of section that just ended.
+The package provides the `\sectionype{}` user command to select the style of
+section headers.
+Currently, the options `course`(default) and `article` are allowed.
 
 #### Implementation
 
-This package uses the `titlesec` package.
+This package uses the following packages:
+- `titlesec`
+- `xstring`
+- `setspace`
+- `calc`
+
 It changes the following commands:
 
 - `\thepart`
@@ -150,9 +167,6 @@ It changes the following commands:
 
 This package provides a custom table of contents, with a look similar to that of
 the `minitoc` package table of contents.
-It also provides a user command to print the new table of contents, `\printtoc`.
-Using the regular `\tableofcontents` does not print the table of contents as
-intended.
 
 #### Implementation
 
@@ -164,6 +178,7 @@ This package uses the following packages:
 It changes the following commands:
 
 - `\contentsname`
+- `\tableofcontents`
 
 ### `csumttl.sty`
 
@@ -182,6 +197,8 @@ The titlepage contains the following:
 - A quote (Optional)
 
 The titlepage is printed on a separate page.
+The package provides the `\titletype{}` user command to select the type of contents in the titlepage.
+Currently, the options `course`(default) and `article` are allowed.
 
 #### Implementation
 
@@ -189,6 +206,8 @@ This package uses the following packages:
 
 - `calc`
 - `setspace`
+- `xstring`
+- `ragged2e`
 - `csuminf`
 
 It changes the `\maketitle` command.
@@ -197,13 +216,12 @@ It changes the `\maketitle` command.
 
 ## Planned Features
 
-- add/improve documentation for user commands
+- improve documentation for user commands
 - add license
 - provide comments in code
 - clean up titlepage generation
 - add options for titlepage (e.g. colour or different style)
 - add options for section headers (e.g. different section names)
 - add class-wide options (e.g. formatting for reading or taking notes)
-- add user commands to change provided options
 - add GitHub issue templates
 - whatever I think up
