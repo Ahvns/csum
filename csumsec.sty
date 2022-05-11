@@ -36,6 +36,8 @@
 \newcommand{\@cpartname}{}%
 \newcommand{\@cpartformat}{}%
 \newcommand{\@cparttypeset}{}%
+\newcommand{\@csubsecbreak}{}%
+\newcommand{\@cpartrule}{}%
 
 \newcommand{\@cseccourseoptions}{%
   \renewcommand{\@csecname}{Lecture~\arabic{section}\hspace{1em}}%
@@ -44,6 +46,7 @@
   \renewcommand{\@cpartname}{\Large Part~\Roman{part}:}%
   \renewcommand{\@cpartformat}{display}%
   \renewcommand{\@cparttypeset}{\vspace{-0.5\baselineskip}\huge}%
+  \renewcommand{\@csubsecbreak}{\clearpage}%
 }%
 
 \newcommand{\@csecarticleoptions}{%
@@ -53,6 +56,10 @@
   \renewcommand{\@cpartname}{Subject:}%
   \renewcommand{\@cpartformat}{hang}%
   \renewcommand{\@cparttypeset}{\LARGE}%
+  \renewcommand{\@csubsecbreak}{\par}%
+  \renewcommand{\@cpartrule}{%
+    \vspace{-0.7\baselineskip}\noindent\rule{\textwidth}{2pt}%
+  }%
 }%
 
 
@@ -80,7 +87,7 @@
   [hang]%
   {\bfseries\Large}%
   {\thesection}%
-  {0.5ex}%
+  {0pt}%
   {\@csecprename}
   [\vspace{-2ex}\rule{\textwidth}{2pt}\vspace{-0.5\baselineskip}%
   \setcounter{csumsecdepth}{1}]%
@@ -100,7 +107,7 @@
   [hang]%
   {\sffamily\bfseries\large}%
   {\thesubsection}%
-  {0.25ex}%
+  {0pt}%
   {}%
   [\vspace{-0.7\baselineskip}\rule{0.75\textwidth}{1pt}\vspace{-0.5\baselineskip}%
   \setcounter{csumsecdepth}{2}]%
@@ -110,7 +117,9 @@
     \vspace{-0.5\baselineskip}%
     \noindent\rule{0.25\textwidth}{0pt}%
     \rule{0.75\textwidth}{1pt}%
-    \clearpage%
+    \@csubsecbreak%
+  \else%
+    \vspace{-0.5\baselineskip}%
   \fi%
 }%
 
@@ -128,13 +137,15 @@
     {\subsubsection}%
     [hang]%
     {\sffamily\bfseries}%
-    {\hspace{0.5em}}%
-    {0.125ex}%
+    {}%
+    {0pt}%
     {}%
     [\vspace{-0.7\baselineskip}%
-    \rule{\widthof{\bfseries\@csubsubsectitle}+1.5em}{0.5pt}%
+    \rule{\widthof{\bfseries\@csubsubsectitle}+1ex}{0.5pt}%
     \vspace{-0.5\baselineskip}%
     \setcounter{csumsecdepth}{3}]%
+
+\newcommand{\subsubsectionbreak}{\vspace{-0.5\baselineskip}}%
 
 \renewcommand{\thesubsubsection}{}%
 
@@ -178,6 +189,7 @@
     {1em}%
     {\@cparttypeset}%
     [%
+    \@cpartrule%
     \ifnum\value{part}=1%
       \vspace{-0.7\baselineskip}%
     \else%
