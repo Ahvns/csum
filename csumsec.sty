@@ -10,7 +10,6 @@
 
 %%  CODE    %%
 % option commands
-\newcommand{\@sectype}{course}%
 \newcommand{\@csecname}{}%
 \newcommand{\@csecprename}{}%
 \newcommand{\@csubsecname}{}%
@@ -18,7 +17,7 @@
 \newcommand{\@cpartformat}{}%
 \newcommand{\@cparttypeset}{}%
 
-\newcommand{\@courseoptions}{%
+\newcommand{\@cseccourseoptions}{%
   \renewcommand{\@csecname}{Lecture~\arabic{section}}%
   \renewcommand{\@csecprename}{\hfill}%
   \renewcommand{\@csubsecname}{\arabic{section}.\arabic{subsection}~~}%
@@ -27,7 +26,7 @@
   \renewcommand{\@cparttypeset}{\vspace{-0.5\baselineskip}\huge}%
 }%
 
-\newcommand{\@articleoptions}{%
+\newcommand{\@csecarticleoptions}{%
   \renewcommand{\@csecname}{}%
   \renewcommand{\@csecprename}{}%
   \renewcommand{\@csubsecname}{}%
@@ -40,21 +39,12 @@
 \newcommand{\sectiontype}[1]{%
   % Check if input is equal to one of specified options, otherwise revert to default
   \IfStrEqCase{#1}{%
-    {course}{\renewcommand{\@sectype}{course}}%
-    {article}{\renewcommand{\@sectype}{article}}%
-  }%
-  % Change settings per option
-  \IfStrEqCase{\@sectype}{%
-    % Course option
-    {course}{\@courseoptions}%
-    % Article option
-    {article}{\@articleoptions}%
+    {course}{\@cseccourseoptions}%
+    {article}{\@csecarticleoptions}%
   }%
 }%
 
-\sectiontype{}% initialise
-
-
+\sectiontype{course}% initialise
 
 %%  FORMAT  %%
 %   Sections    %

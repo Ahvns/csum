@@ -5,12 +5,50 @@
 
 %%  USED PACKAGES   %%
 \RequirePackage{fancyhdr}%
-\RequirePackage{xcolor}
+\RequirePackage{xcolor}%
+\RequirePackage{xstring}%
 \RequirePackage{csuminf}%
 
 %%  CODE    %%
 \pagestyle{fancy}%
 \fancyhf{}%
+
+\newcommand{\@cfooter}{}%
+
+\newcommand{\@chdrcourseoptions}{%
+  \renewcommand{\partmark}[1]{\markboth{}{##1}}%
+  \renewcommand{\sectionmark}[1]{%
+    \renewcommand{\@csec}{##1}%
+    \markboth{}{##1}%
+  }%
+  \renewcommand{\subsectionmark}[1]{\markboth{##1}{\@csec}}%
+  \renewcommand{\@cfooter}{%
+  Summary~for~%
+  \ifx\@coursecode\@empty%
+      \relax%
+  \else%
+      \textsc{\@coursecode}~---~%
+  \fi%
+  \@course%
+  }%
+}%
+
+\newcommand{\@chdrarticleoptions}{%
+  \renewcommand{\partmark}[1]{\markright{##1}}%
+  \renewcommand{\sectionmark}[1]{\markboth{##1}{}}%
+  \renewcommand{\subsectionmark}[1]{}%
+  \renewcommand{\@cfooter}{Article~notes~for~\@course}%
+}%
+
+\newcommand{\headertype}[1]{%
+  % Check if input is equal to one of specified options, otherwise revert to default
+  \IfStrEqCase{#1}{%
+    {course}{\@chdrcourseoptions}%
+    {article}{\@chdrarticleoptions}%
+  }%
+}%
+
+\headertype{course}% initialise
 
 \renewcommand{\headrulewidth}{0pt}%
 
@@ -24,15 +62,7 @@
 \lfoot{%
     \sffamily%
     \footnotesize%
-    \textcolor{gray}{%
-        Summary~for~%
-        \ifx\@coursecode\@empty%
-            \relax%
-        \else%
-            \textsc{\@coursecode}~---~%
-        \fi%
-        \@course%
-        }%
+    \textcolor{gray}{\@cfooter}%
     }%
 
 %%  HEADER  %%
@@ -50,19 +80,4 @@
     \textcolor{gray}{%
         \rightmark%
         }%
-    }%
-
-%%  MARKS   %%
-\renewcommand{\partmark}[1]{%
-    \markboth{}{#1}%
-    }%
-%\renewcommand{\partmark}[1]{}%
-
-\renewcommand{\sectionmark}[1]{%
-    \renewcommand{\@csec}{#1}%
-    \markboth{}{#1}
-    }%
-
-\renewcommand{\subsectionmark}[1]{%
-    \markboth{#1}{\@csec}%
     }%

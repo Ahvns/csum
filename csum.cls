@@ -48,5 +48,6 @@
 % Custom commands for options
 \newcommand{\summarytype}[1]{%
   \sectiontype{#1}%
+  \headertype{#1}%
 }%
 \onehalfspacing%
