@@ -1,7 +1,21 @@
-%%  IDENTIFICATION  %%
-% csum.cls
-% Make a course summary
-% 2022-May-06 Armin Hoendervangers 428365ah (at) student.eur.nl
+%% File: csum.cls
+%% Copyright 2022 A. Hoendervangers
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is A. Hoendervangers
+%
+% This work consists of the files csum.cls, csumhdr.sty,
+% csuminf.sty, csumsec.sty, csumtoc.sty, and csumttl.sty.
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{csum}[2022/05/06 version 1.00 Course Summary]
 
