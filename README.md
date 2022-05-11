@@ -7,17 +7,18 @@ and as an exercise in writing LaTeX code and working with GitHub.
 
 ## Table of contents
 
-- [`csum.cls`](https://github.com/Ahvns/csum/tree/readme#csumcls)
-  - [Features](https://github.com/Ahvns/csum/tree/readme#features)
-  - [Implementation](https://github.com/Ahvns/csum/tree/readme#implementation)
-  - [Dependencies](https://github.com/Ahvns/csum/tree/readme#dependencies)
-- [Custom Packages](https://github.com/Ahvns/csum/tree/readme#custom-packages)
-  - [`csumhdr.sty`](https://github.com/Ahvns/csum/tree/readme#csumhdrsty)
-  - [`csuminf.sty`](https://github.com/Ahvns/csum/tree/readme#csuminfsty)
-  - [`csumsec.sty`](https://github.com/Ahvns/csum/tree/readme#csumsecsty)
-  - [`csumtoc.sty`](https://github.com/Ahvns/csum/tree/readme#csumtocsty)
-  - [`csumttl.sty`](https://github.com/Ahvns/csum/tree/readme#csumttlsty)
-- [Planned Features](https://github.com/Ahvns/csum/tree/readme#planned-features)
+- [`csum.cls`](https://github.com/Ahvns/csum#csumcls)
+  - [Features](https://github.com/Ahvns/csum#features)
+  - [Implementation](https://github.com/Ahvns/csum#implementation)
+  - [Dependencies](https://github.com/Ahvns/csum#dependencies)
+- [Custom Packages](https://github.com/Ahvns/csum#custom-packages)
+  - [`csumhdr.sty`](https://github.com/Ahvns/csum#csumhdrsty)
+  - [`csuminf.sty`](https://github.com/Ahvns/csum#csuminfsty)
+  - [`csumsec.sty`](https://github.com/Ahvns/csum#csumsecsty)
+  - [`csumtoc.sty`](https://github.com/Ahvns/csum#csumtocsty)
+  - [`csumttl.sty`](https://github.com/Ahvns/csum#csumttlsty)
+- [Planned Features](https://github.com/Ahvns/csum#planned-features)
+- [License](https://github.com/Ahvns/csum#license)
 
 ---
 
@@ -225,3 +226,10 @@ It changes the `\maketitle` command.
 - add class-wide options (e.g. formatting for reading or taking notes)
 - add GitHub issue templates
 - whatever I think up
+
+---
+
+## License
+
+This package is licensed under the LaTeX Project Public License.
+The full license is enclosed in the `LICENSE` file.
