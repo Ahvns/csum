@@ -1,0 +1,84 @@
+% document class settings
+\documentclass[12pt,a4paper]{csum}
+
+% encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% bibliography
+\usepackage[style=apa,natbib]{biblatex}
+\addbibresource{references.bib}
+
+% other packages
+\usepackage{lipsum}
+
+%%  Document Info   %%
+\summarytype{article}
+
+%   Author of Summary
+\author{Awesome Student}
+%   Author's e-mail  (Optional, can be left blank)
+\email{mail@website.url}
+%   Course name and (optionally) code
+\course[1473X]{\LaTeX~class writing}
+%   Year course was taught (Optional, can be left blank)
+\yeartaught{\the\year}
+%   Course lecturer (Optional, can be left blank)
+\lecturer{dr.\ Foo Bar}
+%   Faculty course was taught at (Optional, can be left blank)
+\faculty{School of Typesetting}
+%  A quote to make the titlepage somewhat interesting. Accepts two arguments;
+% the first being the text of the quote and the second the person quoted
+\titlequote{Some quote in an attempt to look interesting}{Some uninteresting person}
+
+%%  DOCUMENT BODY   %%
+
+\begin{document}
+
+%   Title page
+\maketitle
+
+%   Table of contents
+\tableofcontents
+
+%   Part 1
+\part{Introduction}
+    \section{Introduction}
+        \subsection{Some subsection}
+        \lipsum[1]
+        \subsection{Another subsection}
+        \lipsum[1]
+    \section{Another example}
+    \lipsum[1]
+        \subsection{Example one}
+        \lipsum[1]
+            \subsubsection{Details!}
+            \lipsum[1]
+            \subsubsection{More details}
+            \lipsum[1]
+        \subsection{Example two}
+        \lipsum[1]
+%   Part 2
+\part{A Turning Point}
+\lipsum[1]
+\section{You know the drill by now}
+        \subsection{I'm quite proud}
+        \lipsum[1]
+            \subsubsection{Feedback is always welcome}
+            \lipsum[1]
+            \subsubsection{Feel free to send me an email}
+            \lipsum[1]
+            \subsubsection{Or some other way of contacting}
+            \lipsum[1]
+        \subsection{More text}
+        \lipsum[1]
+    \section{It tends to go on}
+        \lipsum[1]
+        \subsection{And on}
+        \lipsum[1]
+        \subsection{And on\ldots}
+        \lipsum[1]
+    \section{You get the idea}
+    \lipsum[1]
+
+\end{document}
